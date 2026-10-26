@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="dashboard-body">
+
+
+<header class="dashboard-header">
+
+    <div>
+        <h2>⚙️ Admin Dashboard</h2>
+        <p>Manage your professional profile</p>
+    </div>
+
+    <button
+        class="logout-btn"
+        onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+
+<div class="dashboard-container">
+
+
+    <aside class="sidebar">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="profile.html">
+            ✏️ Edit Profile
+        </a>
+
+        <a href="#projects">
+            🚀 Projects
+        </a>
+
+        <a href="index.html"
+           target="_blank">
+            👁️ View Website
+        </a>
+
+    </aside>
+
+
+    <main class="dashboard-content">
+
+        <h1>Welcome, Admin 👋</h1>
+
+        <p>
+            Manage your portfolio from this dashboard.
+        </p>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <span>👤</span>
+                <h3>Profile</h3>
+                <p>1</p>
+            </div>
+
+            <div class="stat-card">
+                <span>🚀</span>
+                <h3>Projects</h3>
+                <p id="projectCount">0</p>
+            </div>
+
+            <div class="stat-card">
+                <span>💻</span>
+                <h3>Skills</h3>
+                <p id="skillCount">0</p>
+            </div>
+
+            <div class="stat-card">
+                <span>🏆</span>
+                <h3>Certificates</h3>
+                <p id="certificateCount">0</p>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h2>Quick Actions</h2>
+
+            <div class="quick-actions">
+
+                <a
+                    href="profile.html"
+                    class="action-btn">
+                    ✏️ Edit Profile
+                </a>
+
+                <a
+                    href="index.html"
+                    target="_blank"
+                    class="action-btn">
+                    🌐 View Website
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="projects"
+            class="dashboard-card">
+
+            <div class="card-header">
+
+                <h2>Projects</h2>
+
+                <button
+                    onclick="openProjectForm()"
+                    class="btn primary">
+                    + Add Project
+                </button>
+
+            </div>
+
+
+            <div id="adminProjects"></div>
+
+        </div>
+
+        <div class="dashboard-card dash-security-card">
+            <div class="card-header">
+                <h2>🔔 Login Alerts</h2>
+            </div>
+            <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:14px;">
+                Successful sign-ins are emailed to <strong>sshanmukhabas@gmail.com</strong>.
+                Configure Firebase Functions and the Resend sender before deploying to enable delivery.
+            </p>
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- PROJECT MODAL -->
+
+<div
+    id="projectModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <button
+            class="close-btn"
+            onclick="closeProjectForm()">
+            ×
+        </button>
+
+        <h2>Add Project</h2>
+
+
+        <form id="projectForm">
+
+            <label>
+                Project Name
+            </label>
+
+            <input
+                id="projectName"
+                required
+            >
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="projectDescription"
+                required>
+            </textarea>
+
+
+            <label>
+                Technologies
+            </label>
+
+            <input
+                id="projectTech"
+                placeholder="React, Java, MySQL"
+                required
+            >
+
+
+            <label>
+                GitHub URL
+            </label>
+
+            <input
+                id="projectGithub"
+                placeholder="https://github.com/"
+            >
+
+
+            <button
+                class="btn primary full">
+                Save Project
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+<script type="module" src="firebase-auth.js"></script>
+
+</body>
+</html>

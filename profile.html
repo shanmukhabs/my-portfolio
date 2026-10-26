@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="dashboard-body">
+
+
+<header class="dashboard-header">
+
+    <div>
+
+        <h2>
+            ✏️ Edit Profile
+        </h2>
+
+        <p>
+            Update your professional information
+        </p>
+
+    </div>
+
+
+    <button
+        onclick="logout()"
+        class="logout-btn">
+        Logout
+    </button>
+
+</header>
+
+
+<div class="dashboard-container">
+
+
+    <aside class="sidebar">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="profile.html"
+           class="active">
+            ✏️ Edit Profile
+        </a>
+
+        <a href="index.html"
+           target="_blank">
+            👁️ View Website
+        </a>
+
+    </aside>
+
+
+    <main class="dashboard-content">
+
+
+        <div class="edit-profile-card">
+
+            <h1>Profile Information</h1>
+
+            <p>
+                Update your details and click
+                Save Changes.
+            </p>
+
+
+            <form id="profileForm">
+
+
+                <!-- PHOTO -->
+
+                <div class="photo-upload">
+
+                    <img
+                        id="editProfileImage"
+                        src="assets/IMG-20250923-WA0002.jpg"
+                        alt="Profile"
+                    >
+
+                    <label
+                        for="profileUpload"
+                        class="upload-btn">
+                        📷 Choose Profile Picture
+                    </label>
+
+                    <input
+                        type="file"
+                        id="profileUpload"
+                        accept="image/*"
+                        hidden
+                    >
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <!-- TITLE -->
+
+                <label>
+                    Professional Title
+                </label>
+
+                <input
+                    type="text"
+                    id="profileTitle"
+                    placeholder="Full Stack Developer"
+                    required
+                >
+
+
+                <!-- ABOUT -->
+
+                <label>
+                    About Me
+                </label>
+
+                <textarea
+                    id="profileAbout"
+                    rows="6"
+                    placeholder="Write about yourself..."
+                    required>
+                </textarea>
+
+
+                <!-- EMAIL -->
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="profileEmail"
+                    required
+                >
+
+
+                <!-- GITHUB -->
+
+                <label>
+                    GitHub URL
+                </label>
+
+                <input
+                    type="url"
+                    id="profileGithub"
+                    placeholder="https://github.com/"
+                >
+
+
+                <!-- LINKEDIN -->
+
+                <label>
+                    LinkedIn URL
+                </label>
+
+                <input
+                    type="url"
+                    id="profileLinkedin"
+                    placeholder="https://linkedin.com/in/"
+                >
+
+
+                <!-- EDUCATION -->
+
+                <label>
+                    Education
+                </label>
+
+                <textarea
+                    id="profileEducation"
+                    rows="4"
+                    placeholder="Enter education details">
+                </textarea>
+
+
+                <div class="save-area">
+
+                    <button
+                        type="submit"
+                        class="btn primary">
+                        💾 Save Changes
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="resetProfile()"
+                        class="btn secondary">
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="saveMessage"
+                    class="success-message">
+                </p>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- SKILLS EDITOR -->
+
+        <div class="edit-profile-card">
+
+            <h2>💻 Skills</h2>
+
+            <div
+                id="skillsEditor">
+            </div>
+
+            <button
+                onclick="addSkill()"
+                class="btn primary">
+                + Add Skill
+            </button>
+
+        </div>
+
+
+        <!-- LEARNING EDITOR -->
+
+        <div class="edit-profile-card">
+
+            <h2>📚 Learning</h2>
+
+            <div
+                id="learningEditor">
+            </div>
+
+            <button
+                onclick="addLearning()"
+                class="btn primary">
+                + Add Learning
+            </button>
+
+        </div>
+
+
+        <!-- CERTIFICATION EDITOR -->
+
+        <div class="edit-profile-card">
+
+            <h2>🏆 Certifications</h2>
+
+            <div
+                id="certificationEditor">
+            </div>
+
+            <button
+                onclick="addCertification()"
+                class="btn primary">
+                + Add Certification
+            </button>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="app.js"></script>
+<script type="module" src="firebase-auth.js"></script>
+
+</body>
+</html>

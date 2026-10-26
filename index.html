@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shanmukha BS - Full Stack Developer Portfolio. Featuring modern 3D dark aesthetics, interactive project cards, GitHub repository explorer, and skills showcase.">
+    <meta name="keywords" content="Shanmukha BS, Full Stack Developer, Java, Spring Boot, React, JavaScript, Portfolio, Web Developer">
+    <meta name="author" content="Shanmukha BS">
+    <title>Shanmukha BS | Full Stack Developer • 3D Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dark-theme">
+    <!-- Scroll Progress Indicator -->
+    <div id="scrollProgress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+    <!-- Animated Particle Canvas Background -->
+    <canvas id="particlesCanvas" class="particles-bg" aria-hidden="true"></canvas>
+
+    <!-- Ambient Gradient Backdrops -->
+    <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+    <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="navbar" id="mainNavbar">
+        <div class="nav-container">
+            <a href="#home" class="logo" aria-label="Shanmukha BS Home">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-name">Shanmukha</span>
+                <span class="logo-dot"></span>
+                <span class="logo-tag"></span>
+                <span class="logo-bracket">&gt;</span>
+            </a>
+
+            <button class="menu-btn" type="button" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav id="navMenu" class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#github" class="nav-link">GitHub</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <div class="nav-actions">
+                    <button class="btn btn-outline-lime btn-sm" id="navResumeBtn" type="button">
+                        <span class="btn-icon">📄</span> Résumé
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- =====================================================
+             HERO SECTION (3D Orb, Particles & Holographic Card)
+        ===================================================== -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="badge-status">
+                        <span class="pulse-indicator"></span>
+                        <span class="badge-text">Available for Full Stack Opportunities</span>
+                    </div>
+
+                    <h1 class="hero-heading">
+                        <span class="greeting-sub">Hello World, I'm</span>
+                        <span class="hero-name-gradient" id="heroName">Shanmukha BS</span>
+                    </h1>
+
+                    <h2 class="hero-role-title">
+                        <span class="typed-text" id="heroTitle">Full Stack Developer</span>
+                        <span class="typing-cursor">|</span>
+                    </h2>
+
+                    <p class="hero-description" id="heroSummary">
+        "I am a Full Stack Developer interested in building modern, responsive and user-friendly web applications.",
+                    </p>
+
+                    <div class="hero-tech-pills">
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">Spring Boot</span>
+                        <span class="tech-pill">React.js</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">css</span>
+                        <span class="tech-pill">html</span>
+                    
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">REST APIs</span>
+                    </div>
+
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-lime">
+                            <span>Explore Projects</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                        <button type="button" class="btn btn-glass" id="openResumeHeroBtn">
+                            <span>📄 View Résumé</span>
+                        </button>
+                        <a href="#contact" class="btn btn-ghost">
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+
+                    <!-- Key Stats Quick Bar -->
+                    <div class="hero-stats-row">
+                        <div class="stat-item">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Core Tech Stack</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">2028</span>
+                            <span class="stat-label">BIET Graduate</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Dedication</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D ORB & HOLOGRAPHIC AVATAR -->
+                <div class="hero-visual-wrapper">
+                    <!-- 3D Floating Interactive Orb Container -->
+                    <div class="orb-scene" id="orbScene" aria-hidden="true">
+                        <div class="orb-core">
+                            <div class="orb-inner-glow"></div>
+                            <div class="orb-mesh"></div>
+                            <!-- Orbital Rotation Rings -->
+                            <div class="orbit-ring orbit-ring-1"></div>
+                            <div class="orbit-ring orbit-ring-2"></div>
+                            <div class="orbit-ring orbit-ring-3"></div>
+                            <div class="orb-floating-particle p1"></div>
+                            <div class="orb-floating-particle p2"></div>
+                            <div class="orb-floating-particle p3"></div>
+                            <div class="orb-floating-particle p4"></div>
+                        </div>
+                    </div>
+
+                    <!-- Holographic Profile Showcase Card with 3D Tilt -->
+                    <div class="hero-card-3d tilt-card" id="heroProfileCard">
+                        <div class="card-glass-sheen"></div>
+                        <div class="profile-avatar-frame">
+                            <div class="avatar-glow-ring"></div>
+                            <img
+                                id="profileImage"
+                                src="assets/IMG-20250923-WA0002.jpg"
+                                alt="Shanmukha BS - Full Stack Developer"
+                                class="profile-avatar-img"
+                            >
+                        </div>
+                        <div class="profile-meta">
+                            <div class="profile-meta-header">
+                                <span class="profile-meta-title">Shanmukha BS</span>
+                                <span class="profile-meta-badge">Full Stack</span>
+                            </div>
+                            <p class="profile-meta-desc">Info Science & Engineering @ BIET</p>
+                            <div class="profile-status-bar">
+                                <span class="status-dot"></span>
+                                <span>Building scalable web systems</span>
+                            </div>
+                        </div>
+                        <div class="profile-social-mini">
+                            <a href="https://github.com/shanmukhabs" target="_blank" rel="noopener noreferrer" class="social-mini-link" title="GitHub">
+                                <span>🐙 GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-mini-link" id="heroLinkedIn" title="LinkedIn">
+                                <span>💼 LinkedIn</span>
+                            </a>
+                            <a href="mailto:sshanmukhabas@gmail.com" class="social-mini-link" title="Email">
+                                <span>✉️ Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             ABOUT ME SECTION
+        ===================================================== -->
+        <section id="about" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">ABOUT ME</span>
+                    <h2 class="section-title">Engineering Digital Value</h2>
+                    <p class="section-subtitle">A blend of system logic, architectural reliability, and modern interactive aesthetics.</p>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Bio & Core Philosophy -->
+                    <div class="about-bio-card glass-panel tilt-card">
+                        <div class="card-glass-sheen"></div>
+                        <div class="card-accent-bar"></div>
+                        <div class="bio-intro">
+                            <span class="bio-icon">⚡</span>
+                            <h3>Full Stack Developer</h3>
+                        </div>
+                        <p id="aboutText" class="bio-text">
+                            I am a Full Stack Developer focused on architecting resilient, responsive, and intuitive web solutions. With hands-on expertise spanning modern frontend frameworks and robust backend paradigms, I bridge the gap between creative interface design and high-performance server logic.
+                        </p>
+                        <div class="about-highlights-grid">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">💻</span>
+                                <div>
+                                    <h4>Modern Frontend</h4>
+                                    <p>Clean HTML5, CSS3, modern JavaScript (ES6+), and component architectures with React.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">⚙️</span>
+                                <div>
+                                    <h4>Robust Backend</h4>
+                                    <p>Java, Spring Boot, RESTful APIs, MVC architecture, and secure endpoints.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🗄️</span>
+                                <div>
+                                    <h4>Databases & Relational Modeling</h4>
+                                    <p>Structured MySQL schemas, queries, indexing, and transactional integrity.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🚀</span>
+                                <div>
+                                    <h4>Developer Workflow</h4>
+                                    <p>Git version control, GitHub collaboration, clean documentation, and CI readiness.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Developer Interactive Terminal / Spec Card -->
+                    <div class="terminal-card glass-panel tilt-card">
+                        <div class="card-glass-sheen"></div>
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="term-btn term-close"></span>
+                                <span class="term-btn term-minimize"></span>
+                                <span class="term-btn term-maximize"></span>
+                            </div>
+                            <div class="terminal-title">developer.config.json</div>
+                            <span class="terminal-lang">JSON</span>
+                        </div>
+                        <div class="terminal-body">
+                            <pre><code class="code-block"><span class="code-bracket">{</span>
+  <span class="code-key">"developer"</span>: <span class="code-string">"Shanmukha BS"</span>,
+  <span class="code-key">"role"</span>: <span class="code-string">"Full Stack Developer"</span>,
+  <span class="code-key">"education"</span>: <span class="code-string">"B.E. Information Science (2026-2028)"</span>,
+  <span class="code-key">"institution"</span>: <span class="code-string">"BIET Davangere"</span>,
+  <span class="code-key">"location"</span>: <span class="code-string">"Karnataka, India"</span>,
+  <span class="code-key">"focusAreas"</span>: [
+    <span class="code-string">"Scalable Web Architecture"</span>,
+    <span class="code-string">"Interactive 3D & UI Engineering"</span>,
+    <span class="code-string">"REST API Design & Security"</span>
+  ],
+  <span class="code-key">"coreStack"</span>: {
+    <span class="code-key">"frontend"</span>: [<span class="code-string">"React"</span>, <span class="code-string">"JavaScript"</span>, <span class="code-string">"HTML5"</span>, <span class="code-string">"CSS3"</span>],
+    <span class="code-key">"backend"</span>: [<span class="code-string">"Java"</span>, <span class="code-string">"Spring Boot"</span>, <span class="code-string">"REST"</span>],
+    <span class="code-key">"database"</span>: [<span class="code-string">"MySQL"</span>, <span class="code-string">"JPA/Hibernate"</span>],
+    <span class="code-key">"tools"</span>: [<span class="code-string">"Git"</span>, <span class="code-string">"GitHub"</span>, <span class="code-string">"Postman"</span>, <span class="code-string">"VS Code"</span>]
+  },
+  <span class="code-key">"status"</span>: <span class="code-string">"🚀 Open to Opportunities"</span>
+<span class="code-bracket">}</span></code></pre>
+                        </div>
+                        <div class="terminal-footer">
+                            <span class="prompt-symbol">❯</span>
+                            <span class="terminal-cmd">git status: 0 errors, ready to deploy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             SKILLS & TECH STACK SECTION
+        ===================================================== -->
+        <section id="skills" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">TECH ARSENAL</span>
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">Tools, languages, and frameworks leveraged to build end-to-end applications.</p>
+                </div>
+
+                <!-- Skill Filter Tabs -->
+                <div class="skills-filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All Skills</button>
+                    <button class="filter-tab" data-filter="frontend">Frontend</button>
+                    <button class="filter-tab" data-filter="backend">Backend</button>
+                    <button class="filter-tab" data-filter="database">Database</button>
+                    <button class="filter-tab" data-filter="tools">Tools & DevOps</button>
+                </div>
+
+                <!-- Main Skills Grid -->
+                <div id="skillsContainer" class="skills-grid">
+                    <!-- Hydrated via JavaScript with dynamic 3D tilt cards -->
+                </div>
+
+                <!-- Continuous Learning / Exploring Subsection -->
+                <div class="learning-subsection">
+                    <div class="sub-header">
+                        <span class="badge-sub">🌱 EXPANDING HORIZONS</span>
+                        <h3>Currently Exploring & Upskilling</h3>
+                    </div>
+                    <div id="learningContainer" class="learning-grid">
+                        <!-- Hydrated via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             PROJECTS SECTION (Interactive 3D Tilt Cards)
+        ===================================================== -->
+        <section id="projects" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">FEATURED WORK</span>
+                    <h2 class="section-title">Portfolio Projects</h2>
+                    <p class="section-subtitle">Real-world applications engineered with modern technologies and clean codebases.</p>
+                </div>
+
+                <!-- Project Filter Controls -->
+                <div class="project-filter-controls">
+                    <button class="proj-filter-btn active" data-filter="all">All Projects</button>
+                    <button class="proj-filter-btn" data-filter="fullstack">Full Stack</button>
+                    <button class="proj-filter-btn" data-filter="frontend">Frontend / UI</button>
+                </div>
+
+                <!-- Projects Dynamic Container -->
+                <div id="projectsContainer" class="projects-grid">
+                    <!-- Hydrated dynamically from app.js data -->
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             GITHUB EXPLORER & PUBLIC REPO LOOKUP SECTION
+        ===================================================== -->
+        <section id="github" class="section github-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">OPEN SOURCE & CODE</span>
+                    <h2 class="section-title">GitHub & Public Repo Lookup</h2>
+                    <p class="section-subtitle">Explore live repositories, code activity, or lookup any public GitHub repository directly.</p>
+                </div>
+
+                <!-- GitHub Lookup Interactive Search Bar -->
+                <div class="github-lookup-card glass-panel">
+                    <div class="lookup-form-wrap">
+                        <div class="lookup-input-group">
+                            <span class="lookup-icon">🔍</span>
+                            <input
+                                type="text"
+                                id="githubUsernameInput"
+                                class="lookup-input"
+                                placeholder="Search GitHub username (e.g. shanmukhabs)"
+                                value="shanmukhabs"
+                                autocomplete="off"
+                            >
+                            <button type="button" id="lookupRepoBtn" class="btn btn-lime btn-sm">
+                                <span>Lookup Repos</span>
+                            </button>
+                            <button type="button" id="resetGithubBtn" class="btn btn-ghost btn-sm" title="Reset to Shanmukha">
+                                <span>Reset</span>
+                            </button>
+                        </div>
+                        <div class="lookup-search-filter">
+                            <input
+                                type="text"
+                                id="filterRepoKeyword"
+                                class="filter-keyword-input"
+                                placeholder="Filter repositories by keyword or language..."
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Live User Profile Mini Card -->
+                    <div id="githubUserCard" class="github-user-bar">
+                        <div class="gh-user-info">
+                            <img id="ghUserAvatar" src="assets/IMG-20250923-WA0002.jpg" alt="GitHub Profile" class="gh-avatar">
+                            <div class="gh-user-details">
+                                <h3 id="ghUserName">Shanmukha BS</h3>
+                                <p id="ghUserBio">Full Stack Developer • Information Science & Engineering</p>
+                                <a id="ghProfileUrl" href="https://github.com/shanmukhabs" target="_blank" rel="noopener noreferrer" class="gh-profile-badge">
+                                    <span>github.com/shanmukhabs ↗</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gh-stats-row">
+                            <div class="gh-stat-box">
+                                <span class="gh-stat-num" id="ghReposCount">6+</span>
+                                <span class="gh-stat-lbl">Public Repos</span>
+                            </div>
+                            <div class="gh-stat-box">
+                                <span class="gh-stat-num" id="ghFollowersCount">Active</span>
+                                <span class="gh-stat-lbl">Community</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Fetched Repositories Grid -->
+                <div id="githubReposContainer" class="github-repos-grid">
+                    <!-- Dynamically populated via GitHub API with fallback -->
+                    <div class="loading-spinner-wrap">
+                        <div class="glow-spinner"></div>
+                        <p class="fetching-text">Fetching repositories from GitHub API<span class="animated-dots">...</span></p>
+                        <span class="fetching-subtext">Connecting to GitHub REST API v3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             EDUCATION & CERTIFICATIONS SECTION
+        ===================================================== -->
+        <section id="education" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">ACADEMIC & CREDENTIALS</span>
+                    <h2 class="section-title">Education & Certifications</h2>
+                    <p class="section-subtitle">Academic foundations, core engineering coursework, and professional certifications.</p>
+                </div>
+
+                <div class="edu-cert-container">
+                    <!-- Academic Education Timeline -->
+                    <div class="timeline-column">
+                        <h3 class="col-title">
+                            <span class="col-icon">🎓</span> Academic Journey
+                        </h3>
+                        <div class="timeline-wrapper">
+                            <!-- B.E. Degree Item -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-card glass-panel tilt-card">
+                                    <div class="card-glass-sheen"></div>
+                                    <div class="timeline-badge">2026 — 2028 (IN PROGRESS)</div>
+                                    <h4 class="degree-title">Bachelor of Engineering (B.E.)</h4>
+                                    <div class="degree-spec">Information Science & Engineering</div>
+                                    <p class="institution-name">Bapuji Institute of Engineering and Technology (BIET), Davangere</p>
+                                    <div class="edu-highlights">
+                                        <span class="edu-tag">Data Structures & Algorithms</span>
+                                        <span class="edu-tag">Database Management</span>
+                                        <span class="edu-tag">Object-Oriented Programming (Java)</span>
+                                        <span class="edu-tag">Computer Networks</span>
+                                        <span class="edu-tag">Software Engineering</span>
+                                    </div>
+                                    <p class="edu-note">
+                                        Deep focus on software design patterns, algorithmic problem-solving, and full-stack software development methodologies.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Diploma in Computer Science & Engineering Item -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-card glass-panel tilt-card">
+                                    <div class="card-glass-sheen"></div>
+                                    <div class="timeline-badge">2023 — 2025 • COMPLETED (FIRST CLASS)</div>
+                                    <h4 class="degree-title">Diploma in Computer Science &amp; Engineering</h4>
+                                    <div class="degree-spec">Computer Science &amp; Engineering • 66.9% (7.44 CGPA)</div>
+                                    <p class="institution-name">Bapuji Polytechnic, Davangere</p>
+                                    <div class="edu-highlights">
+                                        <span class="edu-tag">Roll No: 335CS22039</span>
+                                        <span class="edu-tag">Dept. of Technical Education, Karnataka</span>
+                                        <span class="edu-tag">FIRST CLASS Distinction</span>
+                                        <span class="edu-tag">C &amp; Java Programming</span>
+                                        <span class="edu-tag">Data Structures</span>
+                                        <span class="edu-tag">DBMS &amp; SQL</span>
+                                        <span class="edu-tag">Web Technologies</span>
+                                    </div>
+                                    <p class="edu-note">
+                                        Completed 3-year technical diploma course in Computer Science &amp; Engineering (2023 — 2025) with First Class honours. Awarded Official Provisional Diploma Certificate digitally certified via DigiLocker under the Department of Technical Education, Karnataka.
+                                    </p>
+                                    <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;">
+                                        <button type="button" class="btn btn-outline-lime btn-sm" id="viewDiplomaCertBtn">
+                                            <span>📜 View Diploma Certificate</span>
+                                        </button>
+                                        <a href="assets/diploma-certificate.jpg" download="Provisional_Diploma_Certificate_Shanmukha_BS.jpg" class="btn btn-ghost btn-sm">
+                                            <span>⬇️ Download Certificate</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications & Achievements -->
+                    <div class="certs-column">
+                        <h3 class="col-title">
+                            <span class="col-icon">🏆</span> Certifications & Credentials
+                        </h3>
+                        <div id="certificationsContainer" class="certs-grid">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             CONTACT & RÉSUMÉ SECTION
+        ===================================================== -->
+        <section id="contact" class="section contact-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">LET'S CONNECT</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Have a project in mind, want to discuss opportunities, or just connect? Let's build together.</p>
+                </div>
+
+                <div class="contact-layout">
+                    <!-- Contact Cards & Résumé Action -->
+                    <div class="contact-info-panel">
+                        <div class="contact-card glass-panel tilt-card">
+                            <div class="card-glass-sheen"></div>
+                            <div class="contact-card-icon">✉️</div>
+                            <h4>Direct Email</h4>
+                            <p id="contactEmailDisplay">sshanmukhabas@gmail.com</p>
+                            <div class="contact-actions-row">
+                                <a id="emailLink" href="mailto:sshanmukhabas@gmail.com" class="btn btn-lime btn-sm">
+                                    Send Email
+                                </a>
+                                <button type="button" class="btn btn-glass btn-sm" id="copyEmailBtn">
+                                    📋 Copy Email
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="contact-card glass-panel tilt-card">
+                            <div class="card-glass-sheen"></div>
+                            <div class="contact-card-icon">🐙</div>
+                            <h4>GitHub Profile</h4>
+                            <p>Explore source code & repositories</p>
+                            <a id="githubLink" href="https://github.com/shanmukhabs" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-sm">
+                                View GitHub ↗
+                            </a>
+                        </div>
+
+                        <div class="contact-card glass-panel tilt-card">
+                            <div class="card-glass-sheen"></div>
+                            <div class="contact-card-icon">💼</div>
+                            <h4>LinkedIn Network</h4>
+                            <p>Professional background & updates</p>
+                            <a id="linkedinLink" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-sm">
+                                Connect on LinkedIn ↗
+                            </a>
+                        </div>
+
+                        <!-- Resume Card -->
+                        <div class="resume-download-box glass-panel">
+                            <div class="resume-box-icon">📄</div>
+                            <div class="resume-box-text">
+                                <h4>Professional Résumé</h4>
+                                <p>Comprehensive experience, education, and technical profile.</p>
+                            </div>
+                            <div class="resume-box-buttons">
+                                <a href="assets/resume.pdf" download="Shanmukha_BS_Resume.pdf" class="btn btn-lime btn-sm">
+                                    ⬇️ Download PDF
+                                </a>
+                                <button type="button" id="openResumeModalBtn" class="btn btn-outline-lime btn-sm">
+                                    👁️ Quick Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Contact Form -->
+                    <div class="contact-form-panel glass-panel">
+                        <h3 class="form-title">Send a Direct Message</h3>
+                        <p class="form-desc">Fill out the form below to initiate communication.</p>
+
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="senderName">Your Name <span class="required">*</span></label>
+                                    <input type="text" id="senderName" class="form-input" placeholder="e.g. Alex Morgan" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senderEmail">Your Email <span class="required">*</span></label>
+                                    <input type="email" id="senderEmail" class="form-input" placeholder="e.g. alex@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderSubject">Subject <span class="required">*</span></label>
+                                <input type="text" id="senderSubject" class="form-input" placeholder="Project Inquiry / Job Opportunity" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderMessage">Message <span class="required">*</span></label>
+                                <textarea id="senderMessage" class="form-input form-textarea" rows="5" placeholder="Share your project requirements, timeline, or greeting..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-lime btn-full" id="submitContactBtn">
+                                <span>🚀 Send Message</span>
+                            </button>
+                            <div id="formFeedback" class="form-feedback-msg" role="status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================
+         RÉSUMÉ PREVIEW MODAL
+    ===================================================== -->
+    <div id="resumeModal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="resumeModalTitle">
+        <div class="modal-container glass-panel">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <span class="modal-icon">📄</span>
+                    <h3 id="resumeModalTitle">Shanmukha BS — Résumé Preview</h3>
+                </div>
+                <div class="modal-actions">
+                    <a href="assets/resume.pdf" download="Shanmukha_BS_Resume.pdf" class="btn btn-lime btn-sm">
+                        ⬇️ Download
+                    </a>
+                    <button type="button" class="modal-close-btn" id="closeResumeModalBtn" aria-label="Close Résumé Modal">✕</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="resume-preview-sheet">
+                    <div class="res-sheet-header">
+                        <h2>Shanmukha BS</h2>
+                        <p class="res-sheet-title">Full Stack Developer</p>
+                        <p class="res-sheet-contact">sshanmukhabas@gmail.com • github.com/shanmukhabs • Davangere, Karnataka</p>
+                    </div>
+
+                    <div class="res-sheet-section">
+                        <h4>Professional Summary</h4>
+                        <p>
+                            Dedicated Full Stack Developer with an engineering background in Information Science from Bapuji Institute of Engineering and Technology (2026 — 2028). Adept in developing end-to-end web applications utilizing Java, Spring Boot, React.js, and MySQL. Passionate about performant system architectures and seamless, interactive user interfaces.
+                        </p>
+                    </div>
+
+                    <div class="res-sheet-section">
+                        <h4>Technical Proficiencies</h4>
+                        <ul class="res-sheet-list">
+                            <li><strong>Languages:</strong> Java, JavaScript (ES6+), HTML5, CSS3, SQL</li>
+                            <li><strong>Frameworks & Libraries:</strong> React.js, Spring Boot, Express/Node concepts, REST APIs</li>
+                            <li><strong>Databases & Tools:</strong> MySQL, Git, GitHub, VS Code, Postman</li>
+                        </ul>
+                    </div>
+
+                    <div class="res-sheet-section">
+                        <h4>Key Engineering Projects</h4>
+                        <div class="res-proj-item">
+                            <h5>Smart Shopping Cart</h5>
+                            <p>Engineered an interactive e-commerce shopping platform with dynamic cart manipulation, instant total calculation, and modular component breakdown.</p>
+                        </div>
+                        <div class="res-proj-item">
+                            <h5>Hospital Management System</h5>
+                            <p>Constructed a full-featured clinical management system managing doctor appointments, patient medical records, and scheduling with Java, Spring Boot, and MySQL.</p>
+                        </div>
+                    </div>
+
+                    <div class="res-sheet-section">
+                        <h4>Education</h4>
+                        <p><strong>Bachelor of Engineering (Information Science &amp; Engineering)</strong><br>
+                        Bapuji Institute of Engineering and Technology, Davangere (2026 — 2028)</p>
+                        <p style="margin-top: 8px;"><strong>Diploma in Computer Science &amp; Engineering (FIRST CLASS • 66.9% / 7.44 CGPA)</strong><br>
+                        Bapuji Polytechnic, Davangere (2023 — 2025) • Roll No: 335CS22039</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         CERTIFICATE PHOTO LIGHTBOX & DOWNLOAD MODAL
+    ===================================================== -->
+    <div id="certificateModal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="certModalTitle">
+        <div class="modal-container cert-modal-container">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <span class="modal-icon" id="certModalIcon">🏆</span>
+                    <div>
+                        <h3 id="certModalTitle">Certificate of Completion</h3>
+                        <p id="certModalSubtitle" class="modal-subtitle">Official verified credential</p>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <a id="certModalVerifyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline-lime btn-sm" style="display: none;">
+                        <span>🔗 Verify Credential</span>
+                    </a>
+                    <a id="certModalDownloadBtn" href="#" download="Certificate.jpg" class="btn btn-lime btn-sm">
+                        <span>⬇️ Download Certificate</span>
+                    </a>
+                    <button type="button" class="modal-close-btn" id="closeCertModalBtn" aria-label="Close Certificate Modal">✕</button>
+                </div>
+            </div>
+            <div class="modal-body cert-modal-body">
+                <div class="cert-image-frame">
+                    <img id="certModalImage" src="assets/certificate-infosys.jpg" alt="Verified Certificate" class="cert-full-img">
+                </div>
+                <div class="cert-modal-meta">
+                    <div class="cert-meta-item">
+                        <span class="meta-lbl">Issued To</span>
+                        <span class="meta-val" id="certModalRecipient">Shanmukha BS</span>
+                    </div>
+                    <div class="cert-meta-item">
+                        <span class="meta-lbl">Issuing Authority</span>
+                        <span class="meta-val" id="certModalIssuer">Infosys Springboard</span>
+                    </div>
+                    <div class="cert-meta-item">
+                        <span class="meta-lbl">Issue Date</span>
+                        <span class="meta-val" id="certModalDate">September 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastNotification" class="toast-card" role="alert" aria-live="polite">
+        <span class="toast-icon" id="toastIcon">✓</span>
+        <span class="toast-message" id="toastMessage">Success</span>
+    </div>
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-name">Shanmukha</span>
+                    <span class="logo-dot"></span>
+                    <span class="logo-tag"></span>
+                    <span class="logo-bracket">&gt;</span>
+                </a>
+                <p>Engineering premium digital products with dark 3D aesthetics and resilient code.</p>
+            </div>
+
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#github">GitHub</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-meta">
+                <p class="copyright">© 2026 Shanmukha BS. All rights reserved.</p>
+                <div class="footer-actions">
+                    <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top">
+                        ↑
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>

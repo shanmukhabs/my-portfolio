@@ -1,0 +1,21 @@
+{
+  "name": "shanmukha-portfolio-3d",
+  "version": "1.0.0",
+  "description": "Shanmukha BS - Full Stack Developer Dark 3D Portfolio with Lime-Green Accents",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve . -l 3000",
+    "dev": "npx -y serve . -l 3000"
+  },
+  "keywords": [
+    "portfolio",
+    "3d",
+    "fullstack",
+    "dark-theme",
+    "lime-green",
+    "javascript",
+    "developer"
+  ],
+  "author": "Shanmukha BS",
+  "license": "MIT"
+}

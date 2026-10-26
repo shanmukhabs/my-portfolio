@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to Shanmukha BS's developer portfolio.">
+    <title>Sign In | Shanmukha BS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <a class="login-back-link" href="index.html">← Back to portfolio</a>
+        <div class="login-icon" aria-hidden="true">⌘</div>
+        <h1>Welcome back</h1>
+        <p>Sign in with your Google account to access the dashboard.</p>
+
+        <button type="button" id="googleLoginBtn" class="btn btn-google full">
+            <span aria-hidden="true">G</span> Continue with Google
+        </button>
+
+        <p id="loginMessage" class="login-status-msg" role="status" aria-live="polite"></p>
+        <p class="login-security-notice">🔒 Secured by Firebase Authentication</p>
+    </main>
+    <script type="module" src="firebase-auth.js"></script>
+</body>
+</html>
